@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Strong Together</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef0ec;--card:#fff;--ink:#14202b;--mute:#5b6773;--line:#dfe2de;--push:#c9780a;--pull:#0f7f78;--legs:#5a4fcf;--core:#6b7280;--cardio:#c2410c;--accent:#f0a23a;--btn:#14202b;--btnink:#fff;--err:#b3261e;--shadow:0 1px 2px rgba(20,32,43,.06),0 10px 28px rgba(20,32,43,.07);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1318;--card:#18202a;--ink:#eef1f3;--mute:#9aa6b2;--line:#27323d;--push:#f0a23a;--pull:#3fc4ba;--legs:#9a90f5;--core:#a3abb6;--cardio:#fb923c;--btn:#eef1f3;--btnink:#0e1318;--err:#ff8a80;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1318;--card:#18202a;--ink:#eef1f3;--mute:#9aa6b2;--line:#27323d;--push:#f0a23a;--pull:#3fc4ba;--legs:#9a90f5;--core:#a3abb6;--cardio:#fb923c;--btn:#eef1f3;--btnink:#0e1318;--err:#ff8a80;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Barlow","Segoe UI",system-ui,sans-serif;line-height:1.4}
+main{max-width:640px;margin:0 auto;padding:14px 16px 28px}
+h2{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:1.7rem;margin:0;letter-spacing:.01em}
+button{font-family:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hero{display:flex;align-items:center;gap:16px;padding:22px 20px;border-radius:20px;color:#fff;background:radial-gradient(circle at 85% 20%,rgba(240,162,58,.35),transparent 45%),linear-gradient(135deg,#0f2027 0%,#203a43 55%,#2c5364 100%);box-shadow:var(--shadow);margin-bottom:16px}
+.hero svg{flex:none;color:var(--accent);fill:currentColor;width:64px;height:24px}
+.hero h1{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:2.4rem;line-height:1;margin:0;text-transform:uppercase;letter-spacing:.04em}
+.hero p{margin:4px 0 0;color:#cfdbe3;font-size:.95rem}
+.hero .blk{display:inline-block;margin-top:8px;font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:99px;background:rgba(255,255,255,.14);letter-spacing:.03em}
+.big{background:var(--btn);color:var(--btnink);border:0;border-radius:12px;padding:14px 16px;font-weight:700;font-size:1.05rem;width:100%}
+.big:disabled{opacity:.6}
+.lnk{background:none;border:0;color:var(--mute);text-decoration:underline;font-size:.9rem;padding:8px 0}
+.sm{background:transparent;color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:7px 10px;font-weight:600;font-size:.85rem}
+.card,.ex{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow)}
+.fld{display:block;margin:10px 0;font-weight:600;font-size:.9rem}
+.fld input,.log input{padding:10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:1rem;font-family:inherit}
+.fld input{display:block;width:100%;margin-top:4px}
+.err{color:var(--err);font-weight:600;margin:8px 0;min-height:1.2em}
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 2px 12px}
+.st{color:var(--mute);font-size:.8rem}
+.tabs{display:flex;gap:4px;padding:4px;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:16px;box-shadow:var(--shadow)}
+.tabs button{flex:1;padding:11px;border-radius:10px;border:0;background:transparent;color:var(--mute);font-weight:700;font-size:.95rem}
+.tabs button.on{background:var(--btn);color:var(--btnink)}
+.key{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.chip{font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:99px;border:1.5px solid currentColor}
+.Push{color:var(--push)}.Pull{color:var(--pull)}.Legs{color:var(--legs)}.Core{color:var(--core)}.Cardio{color:var(--cardio)}
+.rules{font-size:.92rem;margin-bottom:20px}
+.rules b{display:block;margin-top:8px}.rules b:first-child{margin-top:0}
+section{margin-bottom:24px}
+.dayhead{display:flex;align-items:baseline;gap:10px;margin:0 2px 10px;flex-wrap:wrap}
+.dayhead small{color:var(--mute);font-weight:600}
+.today{font-size:.7rem;font-weight:800;letter-spacing:.06em;background:var(--accent);color:#14202b;padding:2px 8px;border-radius:99px}
+.pe{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:8px;box-shadow:var(--shadow);color:var(--core)}
+.num{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:currentColor}
+.num span{color:var(--card)}
+.name{font-weight:700;color:var(--ink)}
+.meta{font-size:.85rem;color:var(--mute)}.meta span{font-weight:700}
+a.go{background:var(--btn);color:var(--btnink);text-decoration:none;font-weight:700;font-size:.85rem;padding:8px 12px;border-radius:10px;white-space:nowrap}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.nav button{background:var(--btn);color:var(--btnink);border:0;border-radius:10px;padding:9px 12px;font-weight:700;font-size:.85rem}
+.prog{display:flex;align-items:center;gap:10px;margin-bottom:14px;font-size:.82rem;color:var(--mute);font-weight:600}
+.pbar{flex:1;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pull),var(--accent));border-radius:99px;transition:width .4s}
+.ex{border-left:5px solid currentColor;color:var(--core)}
+.log{display:flex;align-items:center;gap:6px;margin-top:6px;color:var(--mute);font-size:.85rem;flex-wrap:wrap}
+.log input{width:70px;text-align:center;padding:7px 6px}
+.log input::placeholder{color:var(--mute);opacity:.6}
+.first{font-size:.82rem;color:var(--mute);margin-top:6px;font-weight:600}
+details{margin-top:2px;font-size:.82rem;color:var(--mute)}
+summary{cursor:pointer;padding:3px 0}
+.hist div{padding:2px 0}
+.note{color:var(--mute);font-size:.85rem;margin-top:18px}
+.foot{text-align:center;color:var(--mute);font-size:.85rem;margin-top:34px;padding-top:16px;border-top:1px solid var(--line)}
+.foot b{color:var(--ink)}
+#view,.login{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){#view,.login{animation:none}.pbar i{transition:none}}
+</style>
+</head>
+<body>
+<main id="root"></main>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+/* =====================================================================
+   1) FIREBASE SETTINGS (paste once, then do not change)
+   ===================================================================== */
+var cfg={apiKey:"REPLACE_ME",authDomain:"REPLACE_ME",projectId:"REPLACE_ME",storageBucket:"REPLACE_ME",messagingSenderId:"REPLACE_ME",appId:"REPLACE_ME"};
+
+/* =====================================================================
+   2) EDIT HERE EVERY 2 MONTHS: the workout program
+   - A line starting with # is a DAY:   # Day | Name of the day
+   - Every other line is an EXERCISE:   Exercise | Muscle | Type | unit (unit is optional, default lb)
+   - Types: Push, Pull, Legs, Core, Cardio
+   - Keep an exercise name EXACTLY the same to keep its old weight history.
+   ===================================================================== */
+var SITE_TITLE="Strong Together";
+var TAGLINE="Plan. Lift. Track.";
+var PROGRAM_NAME="Block 1 · Nov – Dec 2026";
+var SCHEDULE="4 days a week · Dumbbells only";
+var SETS=3;
+var RULES=[
+["Every day","Start with 10 min easy cardio. Finish with 5 min stretching."],
+["Build muscle","3 sets of 12 reps, rest 60–90 seconds. Choose a weight where the last 2 reps are hard."],
+["Lose weight","3 sets of 12 reps, rest 30–45 seconds, then 10 min cardio."],
+["Time saver","Do a Push exercise and a Pull exercise back to back (superset), then rest."]
+];
+var PROGRAM=`
+# Monday | Upper A
+Dumbbell bench press | Chest | Push
+One-arm dumbbell row | Back | Pull
+Incline dumbbell press | Upper chest | Push
+Bent-over dumbbell row | Back | Pull
+Dumbbell lateral raise | Side shoulders | Push
+Dumbbell biceps curl | Biceps | Pull
+Overhead dumbbell triceps extension | Triceps | Push
+
+# Wednesday | Lower A
+Goblet squat | Quads, glutes | Legs
+Dumbbell Romanian deadlift | Hamstrings, glutes | Legs
+Bulgarian split squat | Quads, glutes | Legs
+Dumbbell calf raise | Calves | Legs
+Plank | Abs | Core | sec
+
+# Friday | Upper B
+Incline dumbbell press | Upper chest | Push
+Dumbbell pullover | Back | Pull
+Dumbbell shoulder press | Shoulders | Push
+One-arm dumbbell row | Back | Pull
+Dumbbell fly | Chest | Push
+Hammer curl | Biceps, forearms | Pull
+Dumbbell skull crusher | Triceps | Push
+
+# Sunday | Lower B
+Dumbbell lunges | Quads, glutes | Legs
+Dumbbell hip thrust | Glutes | Legs
+Dumbbell step-ups | Quads, glutes | Legs
+Single-leg Romanian deadlift | Hamstrings, glutes | Legs
+Dumbbell calf raise | Calves | Legs
+Dumbbell Russian twist | Abs | Core
+`;
+/* ===================== END OF THE PART YOU EDIT ===================== */
+
+var TAGS=["Push","Pull","Legs","Core","Cardio"];
+function parse(t){var out=[],c=null;
+t.split("\n").forEach(function(l){l=l.trim();if(!l)return;
+if(l.charAt(0)==="#"){var p=l.slice(1).split("|");c={d:p[0].trim(),t:(p[1]||"").trim(),e:[]};out.push(c)}
+else if(c){var q=l.split("|").map(function(x){return x.trim()});
+var tg=TAGS.filter(function(x){return x.toLowerCase()===(q[2]||"").toLowerCase()})[0]||"Core";
+c.e.push([q[0],q[1]||"",tg,q[3]||"lb"])}});
+return out}
+var days=parse(PROGRAM);
+
+function $(i){return document.getElementById(i)}
+function esc(t){return String(t).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+var ready=cfg.apiKey!=="REPLACE_ME",auth,db,user=null,store={},uname="",pendingName="",tab="plan",mode="in",timer;
+var ICON='<svg viewBox="0 0 64 24" aria-hidden="true"><rect x="2" y="6" width="6" height="12" rx="2"/><rect x="9" y="3" width="6" height="18" rx="2"/><rect x="15" y="10" width="34" height="4" rx="2"/><rect x="49" y="3" width="6" height="18" rx="2"/><rect x="56" y="6" width="6" height="12" rx="2"/></svg>';
+function hero(){return'<header class="hero">'+ICON+'<div><h1>'+esc(SITE_TITLE)+'</h1><p>'+esc(TAGLINE)+'</p><span class="blk">'+esc(PROGRAM_NAME)+'</span></div></header>'}
+function shell(h){$("root").innerHTML=hero()+h+'<footer class="foot">Made by <b>Mohamad Karkoura</b> 💪</footer>'}
+
+function msg(e){var c=e&&e.code||"";
+if(c==="auth/email-already-in-use")return"This email already has an account. Use Log in.";
+if(c==="auth/invalid-email")return"This email is not correct.";
+if(c==="auth/weak-password")return"The password must have at least 6 characters.";
+if(c==="auth/network-request-failed")return"No internet. Try again.";
+if(c==="auth/too-many-requests")return"Too many tries. Wait a few minutes.";
+return"Email or password is wrong.";}
+
+function setup(){shell('<div class="card"><b>Setup needed</b><br>The Firebase settings are not in this file yet. Open index.html, find <b>REPLACE_ME</b>, and paste your Firebase config there.</div>')}
+
+function loginView(){
+var up=mode==="up";
+shell('<div class="login"><div class="card"><h2>'+(up?"Create your account":"Welcome back")+'</h2>'+
+(up?'<label class="fld">Your name<input id="nm" maxlength="30" autocomplete="name"></label>':'')+
+'<label class="fld">Email<input id="em" type="email" autocomplete="email"></label>'+
+'<label class="fld">Password<input id="pw" type="password" autocomplete="'+(up?"new-password":"current-password")+'"></label>'+
+'<div class="err" id="er"></div><button class="big" id="go">'+(up?"Create account":"Log in")+'</button>'+
+'<button class="lnk" id="sw">'+(up?"I already have an account":"I am new. Create an account")+'</button>'+
+(up?'':'<br><button class="lnk" id="fg">Forgot password?</button>')+'</div>'+
+'<p class="note">Your weights are saved in your account, so you can see them on any phone or computer.</p></div>');
+$("sw").onclick=function(){mode=up?"in":"up";loginView()};
+if(!up)$("fg").onclick=function(){var em=$("em").value.trim();if(!em){$("er").textContent="Write your email first.";return}
+auth.sendPasswordResetEmail(em).then(function(){$("er").style.color="var(--pull)";$("er").textContent="Check your email for the reset link."}).catch(function(e){$("er").textContent=msg(e)})};
+$("go").onclick=function(){
+var em=$("em").value.trim(),pw=$("pw").value,n=up?$("nm").value.trim():"";
+if(up&&!n){$("er").textContent="Please write your name.";return}
+if(!em||!pw){$("er").textContent="Write your email and password.";return}
+$("er").textContent="";$("go").disabled=true;
+var p;if(up){pendingName=n;p=auth.createUserWithEmailAndPassword(em,pw)}else p=auth.signInWithEmailAndPassword(em,pw);
+p.catch(function(e){$("go").disabled=false;$("er").textContent=msg(e)});
+};
+}
+
+function setStat(t){var e=$("st");if(e)e.textContent=t}
+function persist(){clearTimeout(timer);setStat("Saving…");
+timer=setTimeout(function(){db.collection("users").doc(user.uid).set({name:uname,data:JSON.stringify(store)},{merge:true})
+.then(function(){setStat("Saved ✓")}).catch(function(){setStat("Not saved. Check internet.")})},600)}
+
+function app(){
+shell('<div class="top"><span>Hi, <b>'+esc(uname)+'</b></span><span class="st" id="st"></span><button class="sm" id="out">Log out</button></div><div class="tabs"><button id="t1" class="'+(tab==="plan"?"on":"")+'">Plan</button><button id="t2" class="'+(tab==="log"?"on":"")+'">Weight Log</button></div><div id="view"></div>');
+$("out").onclick=function(){auth.signOut()};
+$("t1").onclick=function(){tab="plan";app()};
+$("t2").onclick=function(){tab="log";app()};
+if(tab==="plan")plan();else logv();
+}
+
+function plan(){
+var tod=new Date().toLocaleDateString("en-US",{weekday:"long"});
+var h='<p class="mute" style="color:var(--mute);margin:0 2px 12px">'+esc(SCHEDULE)+'</p><div class="key">'+TAGS.map(function(t){return'<span class="chip '+t+'">'+t+'</span>'}).join("")+'</div>';
+h+='<div class="card rules">'+RULES.map(function(r){return'<b>'+esc(r[0])+'</b>'+esc(r[1])}).join("")+'</div>';
+days.forEach(function(x){
+h+='<section><div class="dayhead"><h2>'+esc(x.d)+(x.t?': '+esc(x.t):'')+'</h2><small>'+x.e.length+' exercises</small>'+(x.d===tod?'<span class="today">TODAY</span>':'')+'</div>';
+x.e.forEach(function(e,i){
+var q=encodeURIComponent(e[0]+" proper form no music");
+h+='<div class="pe '+e[2]+'"><div class="num"><span>'+(i+1)+'</span></div><div><div class="name">'+esc(e[0])+'</div><div class="meta">'+esc(e[1])+' &middot; <span>'+e[2]+'</span></div></div><a class="go" href="https://www.youtube.com/results?search_query='+q+'" target="_blank" rel="noopener">Watch</a></div>';
+});
+h+='</section>';
+});
+h+='<p class="note">The “Watch” buttons open YouTube search results set to “no music.”</p>';
+$("view").innerHTML=h;
+}
+
+function ymd(x){return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")}
+var cur=(function(){var x=new Date();x.setDate(x.getDate()-((x.getDay()+6)%7));return ymd(x)})();
+function shift(n){var x=new Date(cur+"T00:00:00");x.setDate(x.getDate()+7*n);cur=ymd(x);logv()}
+function fd(d){return new Date(d+"T00:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"})}
+function rd(k){var v=store[k];return Array.isArray(v)?v:[]}
+function has(x){return x.w.some(function(v){return v})}
+function srt(a,b){return a.d<b.d?-1:1}
+function fw(w,u){return w.map(function(x){return x||"–"}).join(" / ")+" "+u}
+function save(k,i,val,n){var a=rd(k),r=a.filter(function(z){return z.d===cur})[0];
+if(!r){r={d:cur,w:[]};for(var j=0;j<n;j++)r.w.push("");a.push(r)}
+r.w[i]=val;store[k]=a;persist()}
+function ins(n){var h="";for(var i=1;i<=n;i++)h+='<input type="number" inputmode="decimal" min="0" step="any" placeholder="'+(n>1?"Set "+i:"Weight")+'" aria-label="'+(n>1?"Set "+i:"Body weight")+'">';return h}
+function prog(){
+var boxes=document.querySelectorAll(".ex[data-k]:not([data-k='bodyweight'])"),done=0;
+boxes.forEach(function(b){var t=rd(b.getAttribute("data-k")).filter(function(r){return r.d===cur})[0];if(t&&has(t))done++});
+$("pf").style.width=(boxes.length?Math.round(done/boxes.length*100):0)+"%";
+$("pt").textContent=done+" of "+boxes.length+" exercises logged";
+}
+function logv(){
+var h='<div class="nav"><button id="pv">‹ Previous week</button><b>Week of '+fd(cur)+'</b><button id="nx">Next week ›</button></div>';
+h+='<div class="prog"><div class="pbar"><i id="pf"></i></div><span id="pt"></span></div>';
+h+='<div class="ex" data-k="bodyweight" data-u="lb"><div class="name">My body weight this week</div><div class="log">'+ins(1)+'<span>lb</span></div><div class="first"></div><details><summary>History</summary><div class="hist"></div></details></div>';
+days.forEach(function(d){h+='<section><div class="dayhead"><h2>'+esc(d.d)+(d.t?': '+esc(d.t):'')+'</h2></div>';
+d.e.forEach(function(e){var k=d.d+"|"+e[0];
+h+='<div class="ex '+e[2]+'" data-k="'+esc(k)+'" data-u="'+esc(e[3])+'"><div class="name">'+esc(e[0])+'</div><div class="log">'+ins(SETS)+'<span>'+esc(e[3])+'</span></div><div class="first"></div><details><summary>History</summary><div class="hist"></div></details></div>'});
+h+='</section>'});
+h+='<p class="note">Type the weight for each set. Gray numbers show what you did last time. Tap History to see every week, starting from the first one.</p>';
+$("view").innerHTML=h;
+$("pv").onclick=function(){shift(-1)};
+$("nx").onclick=function(){shift(1)};
+document.querySelectorAll(".ex[data-k]").forEach(function(box){
+var k=box.getAttribute("data-k"),arr=rd(k),inputs=box.querySelectorAll("input");
+var t=arr.filter(function(r){return r.d===cur})[0];
+var pv=arr.filter(function(r){return r.d<cur&&has(r)}).sort(srt).pop();
+inputs.forEach(function(inp,i){
+if(t&&t.w[i])inp.value=t.w[i];
+if(pv&&pv.w[i])inp.placeholder=pv.w[i];
+inp.onchange=function(){save(k,i,inp.value,inputs.length);paint(box,k);prog()};
+});
+paint(box,k);
+});
+prog();
+}
+function paint(box,k){
+var all=rd(k).filter(has).sort(srt),u=box.getAttribute("data-u")||"lb";
+box.querySelector(".first").textContent=all.length?(k==="bodyweight"?"Start":"First time")+" (week of "+fd(all[0].d)+"): "+fw(all[0].w,u):"";
+box.querySelector("summary").textContent="History ("+all.length+")";
+box.querySelector(".hist").innerHTML=all.map(function(r){return "<div>Week of "+fd(r.d)+": "+fw(r.w,u)+"</div>"}).join("");
+}
+
+if(!ready){setup()}else{
+firebase.initializeApp(cfg);auth=firebase.auth();db=firebase.firestore();
+shell('<p class="note">Loading…</p>');
+auth.onAuthStateChanged(function(u){
+if(!u){user=null;store={};loginView();return}
+user=u;
+db.collection("users").doc(u.uid).get().then(function(d){
+var x=d.exists?d.data():null;
+if(!x){x={name:pendingName||u.email,data:"{}"};db.collection("users").doc(u.uid).set(x)}
+try{store=JSON.parse(x.data||"{}")}catch(e){store={}}
+uname=x.name||u.email;tab="plan";app();
+}).catch(function(){shell('<div class="card">Could not load your data. Check your internet, then refresh the page.</div>')});
+});
+}
+</script>
+</body>
+</html>
