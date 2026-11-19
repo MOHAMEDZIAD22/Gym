@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Our Gym</title>
+<style>
+:root{--bg:#f1f2ef;--card:#fff;--ink:#16212b;--mute:#5d6975;--line:#d9dcd8;--push:#c9780a;--pull:#0f7f78;--legs:#5a4fcf;--core:#6b7280;--btn:#16212b;--btnink:#fff;--err:#b3261e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11161b;--card:#1a2128;--ink:#eef1f3;--mute:#9aa6b2;--line:#2b343d;--push:#f0a23a;--pull:#3fc4ba;--legs:#9a90f5;--core:#a3abb6;--btn:#eef1f3;--btnink:#11161b;--err:#ff8a80;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11161b;--card:#1a2128;--ink:#eef1f3;--mute:#9aa6b2;--line:#2b343d;--push:#f0a23a;--pull:#3fc4ba;--legs:#9a90f5;--core:#a3abb6;--btn:#eef1f3;--btnink:#11161b;--err:#ff8a80;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Barlow","Segoe UI",system-ui,sans-serif;line-height:1.4}
+main{max-width:640px;margin:0 auto;padding:20px 16px 40px}
+h1{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:2.2rem;margin:0 0 4px}
+h2{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:1.6rem;margin:0 0 8px}
+.sub,.mute{color:var(--mute)}
+.sub{margin:0 0 16px}
+button{font-family:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--push);outline-offset:2px}
+.big{background:var(--btn);color:var(--btnink);border:0;border-radius:10px;padding:14px 16px;font-weight:700;font-size:1.05rem;width:100%;text-align:left}
+.sm{background:transparent;color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:7px 10px;font-weight:600;font-size:.85rem}
+.pf{margin-bottom:10px}
+.card,.ex{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.row{display:flex;gap:8px;margin:8px 0;flex-wrap:wrap}
+.row input,.log input{padding:9px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:1rem;font-family:inherit}
+.row input{flex:1;min-width:120px}
+.err{color:var(--err);font-weight:600;margin-top:6px;min-height:1.2em}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.tabs{display:flex;gap:8px;margin-bottom:16px}
+.tabs button{flex:1;padding:11px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font-weight:700}
+.tabs button.on{background:var(--btn);color:var(--btnink);border-color:var(--btn)}
+.key{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.chip{font-size:.8rem;font-weight:600;padding:3px 10px;border-radius:99px;border:1.5px solid currentColor}
+.Push{color:var(--push)}.Pull{color:var(--pull)}.Legs{color:var(--legs)}.Core{color:var(--core)}
+.rules{font-size:.92rem;margin:12px 0 20px}
+.rules b{display:block;margin-top:6px}.rules b:first-child{margin-top:0}
+section{margin-bottom:24px}
+.pe{display:grid;grid-template-columns:5px 1fr auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px 10px 0;margin-bottom:8px;overflow:hidden}
+.bar{align-self:stretch;background:currentColor}
+.name{font-weight:700;color:var(--ink)}
+.meta{font-size:.85rem;color:var(--mute)}.meta span{font-weight:700}
+a.go{background:var(--btn);color:var(--btnink);text-decoration:none;font-weight:700;font-size:.85rem;padding:8px 12px;border-radius:8px;white-space:nowrap}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+.nav button{background:var(--btn);color:var(--btnink);border:0;border-radius:8px;padding:9px 12px;font-weight:700;font-size:.85rem}
+.ex{border-left:5px solid var(--push)}
+.log{display:flex;align-items:center;gap:6px;margin-top:6px;color:var(--mute);font-size:.85rem;flex-wrap:wrap}
+.log input{width:70px;text-align:center}
+.log input::placeholder{color:var(--mute);opacity:.6}
+.first{font-size:.82rem;color:var(--mute);margin-top:6px;font-weight:600}
+details{margin-top:2px;font-size:.82rem;color:var(--mute)}
+summary{cursor:pointer;padding:3px 0}
+.hist div{padding:2px 0}
+.note{color:var(--mute);font-size:.85rem;margin-top:18px}
+</style>
+</head>
+<body>
+<main id="root"></main>
+<script>
+var days=[
+{d:"Monday",t:"Upper A",e:[["Dumbbell bench press","Chest","Push"],["One-arm dumbbell row","Back","Pull"],["Incline dumbbell press","Upper chest","Push"],["Bent-over dumbbell row","Back","Pull"],["Dumbbell lateral raise","Side shoulders","Push"],["Dumbbell biceps curl","Biceps","Pull"],["Overhead dumbbell triceps extension","Triceps","Push"]]},
+{d:"Wednesday",t:"Lower A",e:[["Goblet squat","Quads, glutes","Legs"],["Dumbbell Romanian deadlift","Hamstrings, glutes","Legs"],["Bulgarian split squat","Quads, glutes","Legs"],["Dumbbell calf raise","Calves","Legs"],["Plank","Abs","Core"]]},
+{d:"Friday",t:"Upper B",e:[["Incline dumbbell press","Upper chest","Push"],["Dumbbell pullover","Back","Pull"],["Dumbbell shoulder press","Shoulders","Push"],["One-arm dumbbell row","Back","Pull"],["Dumbbell fly","Chest","Push"],["Hammer curl","Biceps, forearms","Pull"],["Dumbbell skull crusher","Triceps","Push"]]},
+{d:"Sunday",t:"Lower B",e:[["Dumbbell lunges","Quads, glutes","Legs"],["Dumbbell hip thrust","Glutes","Legs"],["Dumbbell step-ups","Quads, glutes","Legs"],["Single-leg Romanian deadlift","Hamstrings, glutes","Legs"],["Dumbbell calf raise","Calves","Legs"],["Dumbbell Russian twist","Abs","Core"]]}
+];
+function $(i){return document.getElementById(i)}
+function g(k){try{return JSON.parse(localStorage.getItem("gym1:"+k))}catch(e){return null}}
+function s(k,v){try{localStorage.setItem("gym1:"+k,JSON.stringify(v))}catch(e){}}
+function esc(t){return String(t).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+var profiles=g("profiles")||[],me=null,tab="plan";
+me=profiles.filter(function(p){return p.id===g("me")})[0]||null;
+
+function login(){
+var h='<h1>Our Gym</h1><p class="sub">Who are you?</p>';
+profiles.forEach(function(p){h+='<div class="pf"><button class="big" data-id="'+p.id+'">'+esc(p.name)+(p.pin?" 🔒":"")+'</button></div>'});
+h+='<div class="card"><b>New person</b><div class="row"><input id="nn" placeholder="Your name" maxlength="30" autocomplete="off"><input id="np" placeholder="PIN (optional, 4 digits)" inputmode="numeric" maxlength="4"></div><button class="big" id="add">Create my profile</button><div class="err" id="ne"></div></div>';
+h+='<p class="note">A PIN stops other people on the same phone from opening your profile. It is not strong security, so do not use a PIN you use anywhere else. Your weights save on this phone, in this browser only.</p>';
+$("root").innerHTML=h;
+document.querySelectorAll(".pf .big").forEach(function(b){b.onclick=function(){
+var p=profiles.filter(function(x){return x.id===b.getAttribute("data-id")})[0];
+if(!p.pin){enter(p);return}
+b.parentNode.innerHTML='<div class="row"><input id="pin" type="password" inputmode="numeric" maxlength="4" placeholder="PIN for '+esc(p.name)+'"><button class="big" id="ok" style="width:auto">Enter</button></div><div class="err" id="er"></div>';
+$("ok").onclick=function(){if($("pin").value===p.pin)enter(p);else $("er").textContent="Wrong PIN. Try again."};
+$("pin").focus();
+}});
+$("add").onclick=function(){
+var n=$("nn").value.trim(),pin=$("np").value.trim();
+if(!n){$("ne").textContent="Please write your name.";return}
+if(pin&&!/^\d{4}$/.test(pin)){$("ne").textContent="The PIN must be 4 numbers, or leave it empty.";return}
+var p={id:Date.now().toString(36),name:n,pin:pin};
+profiles.push(p);s("profiles",profiles);enter(p);
+};
+}
+function enter(p){me=p;s("me",p.id);tab="plan";app()}
+
+function app(){
+$("root").innerHTML='<div class="top"><span>Hi, <b>'+esc(me.name)+'</b></span><button class="sm" id="out">Switch person</button></div><div class="tabs"><button id="t1" class="'+(tab==="plan"?"on":"")+'">Plan</button><button id="t2" class="'+(tab==="log"?"on":"")+'">Weight Log</button></div><div id="view"></div>';
+$("out").onclick=function(){me=null;s("me",null);login()};
+$("t1").onclick=function(){tab="plan";app()};
+$("t2").onclick=function(){tab="log";app()};
+if(tab==="plan")plan();else logv();
+}
+
+function plan(){
+var h='<p class="sub">4 days a week, 9:00 PM, after Isha. Dumbbells only.</p><div class="key"><span class="chip Push">Push</span><span class="chip Pull">Pull</span><span class="chip Legs">Legs</span><span class="chip Core">Core</span></div>';
+h+='<div class="card rules"><b>Every day</b>Start with 10 min easy cardio. Finish with 5 min stretching.<b>Mohammed (build muscle)</b>3 sets of 12 reps, rest 60–90 seconds. Choose a weight where the last 2 reps are hard.<b>Birra and Yousef (lose weight)</b>3 sets of 12 reps, rest 30–45 seconds, then 10 min cardio.<b>Time saver</b>Do a Push exercise and a Pull exercise back to back (superset), then rest.</div>';
+days.forEach(function(x){
+h+='<section><h2>'+x.d+': '+x.t+'</h2>';
+x.e.forEach(function(e){
+var q=encodeURIComponent(e[0]+" proper form no music");
+h+='<div class="pe '+e[2]+'"><div class="bar"></div><div><div class="name">'+e[0]+'</div><div class="meta">'+e[1]+' &middot; <span>'+e[2]+'</span></div></div><a class="go" href="https://www.youtube.com/results?search_query='+q+'" target="_blank" rel="noopener">Watch</a></div>';
+});
+h+='</section>';
+});
+h+='<p class="note">The “Watch” buttons open YouTube search results set to “no music.” If they do not open from WhatsApp, open this website in Safari or Chrome.</p>';
+$("view").innerHTML=h;
+}
+
+function ymd(x){return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")}
+var cur=(function(){var x=new Date();x.setDate(x.getDate()-((x.getDay()+6)%7));return ymd(x)})();
+function shift(n){var x=new Date(cur+"T00:00:00");x.setDate(x.getDate()+7*n);cur=ymd(x);logv()}
+function fd(d){return new Date(d+"T00:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"})}
+function rd(k){var v=g("d:"+me.id+":"+k);return Array.isArray(v)?v:[]}
+function has(x){return x.w.some(function(v){return v})}
+function srt(a,b){return a.d<b.d?-1:1}
+function un(k){return k.indexOf("Plank")>-1?"sec":"lb"}
+function fw(w,u){return w.map(function(x){return x||"–"}).join(" / ")+" "+u}
+function save(k,i,val,n){var a=rd(k),r=a.filter(function(z){return z.d===cur})[0];
+if(!r){r={d:cur,w:[]};for(var j=0;j<n;j++)r.w.push("");a.push(r)}
+r.w[i]=val;s("d:"+me.id+":"+k,a)}
+function ins(n){var h="";for(var i=1;i<=n;i++)h+='<input type="number" inputmode="decimal" min="0" step="any" placeholder="'+(n>1?"Set "+i:"Weight")+'" aria-label="'+(n>1?"Set "+i:"Body weight")+'">';return h}
+function logv(){
+var h='<div class="nav"><button id="pv">‹ Previous week</button><b>Week of '+fd(cur)+'</b><button id="nx">Next week ›</button></div>';
+h+='<div class="ex" data-k="bodyweight"><div class="name">My body weight this week</div><div class="log">'+ins(1)+'<span>lb</span></div><div class="first"></div><details><summary>History</summary><div class="hist"></div></details></div>';
+days.forEach(function(d){h+='<section><h2>'+d.d+': '+d.t+'</h2>';
+d.e.forEach(function(e){var k=d.d+"|"+e[0];
+h+='<div class="ex" data-k="'+k+'"><div class="name">'+e[0]+'</div><div class="log">'+ins(3)+'<span>'+un(k)+'</span></div><div class="first"></div><details><summary>History</summary><div class="hist"></div></details></div>'});
+h+='</section>'});
+h+='<p class="note">Type the weight for each set. Gray numbers show what you did last time. Tap History to see every week, starting from the first one.</p>';
+$("view").innerHTML=h;
+$("pv").onclick=function(){shift(-1)};
+$("nx").onclick=function(){shift(1)};
+document.querySelectorAll(".ex[data-k]").forEach(function(box){
+var k=box.getAttribute("data-k"),arr=rd(k),inputs=box.querySelectorAll("input");
+var t=arr.filter(function(r){return r.d===cur})[0];
+var pv=arr.filter(function(r){return r.d<cur&&has(r)}).sort(srt).pop();
+inputs.forEach(function(inp,i){
+if(t&&t.w[i])inp.value=t.w[i];
+if(pv&&pv.w[i])inp.placeholder=pv.w[i];
+inp.onchange=function(){save(k,i,inp.value,inputs.length);paint(box,k)};
+});
+paint(box,k);
+});
+}
+function paint(box,k){
+var all=rd(k).filter(has).sort(srt),u=k==="bodyweight"?"lb":un(k);
+box.querySelector(".first").textContent=all.length?(k==="bodyweight"?"Start":"First time")+" (week of "+fd(all[0].d)+"): "+fw(all[0].w,u):"";
+box.querySelector("summary").textContent="History ("+all.length+")";
+box.querySelector(".hist").innerHTML=all.map(function(r){return "<div>Week of "+fd(r.d)+": "+fw(r.w,u)+"</div>"}).join("");
+}
+if(me)app();else login();
+</script>
+</body>
+</html>
