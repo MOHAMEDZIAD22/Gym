@@ -7,7 +7,7 @@
 */
 // ---- START ----
 const firebaseConfig = {
-  apiKey: "REPLACE_ME",
+  apiKey: "AIzaSyCu7lciDc_3hOFgawwHFlMi2O5Jvl5UM-0",
   authDomain: "strong-together-657f7.firebaseapp.com",
   projectId: "strong-together-657f7",
   storageBucket: "strong-together-657f7.firebasestorage.app",
